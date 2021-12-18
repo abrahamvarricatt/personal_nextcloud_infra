@@ -19,6 +19,8 @@ SCRIPTPATH=$(dirname "$SCRIPT")
 SCRIPTNAME="$0"
 ARGS="$@"
 BRANCH="master"
+CURRENT_USER=$(whoami)
+ANSIBLE_VERSION="5.0.1"
 
 self_update() {
     cd $SCRIPTPATH
@@ -33,11 +35,17 @@ self_update() {
         echo "Update complete, terminating."
         exit 1
     fi
-    echo "Already the latest version."
+    echo "No updates found."
 }
 
 main() {
-   echo "Running main script"
+    echo "Starting main script"
+    # create new python virtualenv (Python 3.9.6 is present on the box)
+    python3 -m venv $HOME/venv_for_ansible
+    source "$HOME/venv_for_ansible/bin/activate"
+    pip install ansible==$ANSIBLE_VERSION
+    ansible --version
+    deactivate
 }
 
 self_update
