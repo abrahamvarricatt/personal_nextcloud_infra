@@ -25,7 +25,7 @@ self_update() {
     cd $SCRIPTPATH
     git fetch
 
-    [ $(git rev-parse HEAD) == $(git rev-parse @{u}) ] && {
+    [ -n $(git rev-parse HEAD) == $(git rev-parse @{u}) ] && {
         echo "Found a new version of me, updating..."
         git pull --force
         git checkout $BRANCH
