@@ -25,9 +25,9 @@ self_update() {
     cd $SCRIPTPATH
     git fetch
 
-    if [ $(git rev-parse HEAD) = $(git rev-parse @{u}) ]
+    if [ "$(git rev-parse HEAD)" = "$(git rev-parse @{u})" ]
     then
-        echo "Found a new version of me, updating..."
+        echo "Found a new version, updating..."
         git pull --force
         git checkout $BRANCH
         git pull --force
