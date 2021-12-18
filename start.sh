@@ -25,14 +25,15 @@ self_update() {
     cd $SCRIPTPATH
     git fetch
 
-    [ -n $(git rev-parse HEAD) == $(git rev-parse @{u}) ] && {
+    if [ $(git rev-parse HEAD) = $(git rev-parse @{u}) ]
+    then
         echo "Found a new version of me, updating..."
         git pull --force
         git checkout $BRANCH
         git pull --force
         echo "Update complete, terminating."
         exit 1
-    }
+    fi
     echo "Already the latest version."
 }
 
