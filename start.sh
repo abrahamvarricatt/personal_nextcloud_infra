@@ -42,3 +42,4 @@ main() {
 
 self_update
 main
+
