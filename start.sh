@@ -11,7 +11,6 @@ IFS=$'\n\t'
 # identify sub-commands created in other shells. This will keep
 # things simple)
 #
-# bash auto-update ref: https://stackoverflow.com/a/35365800
 #
 # 
 
